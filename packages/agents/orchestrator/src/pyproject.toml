@@ -1,0 +1,18 @@
+[project]
+name = "agent-orchestrator"
+version = "0.1.0"
+dependencies = [
+    "core",
+    "agent-analyst",
+    "market-intel",
+    "pydantic>=2.12.5",
+]
+
+[tool.uv.sources]
+core = { workspace = true }
+agent-analyst = { workspace = true }
+market-intel = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

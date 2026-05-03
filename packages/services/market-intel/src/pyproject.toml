@@ -1,0 +1,21 @@
+[project]
+name = "market-intel"
+version = "0.1.0"
+description = "Market intelligence pipeline — insider trades, options flow, sentiment, 13F, short interest"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.14",
+    "fastmcp>=3.2",
+    "httpx>=0.28",
+    "pydantic>=2.13",
+    "selectolax>=0.4",
+    "yfinance>=1.3",
+]
+
+[project.scripts]
+market-intel-pipeline = "market_intel.pipeline.run:main"
+market-intel-mcp = "market_intel.mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

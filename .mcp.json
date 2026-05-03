@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "open-insider": {
+      "command": "uv",
+      "args": ["run", "market-intel-mcp"],
+      "type": "stdio"
+    }
+  }
+}

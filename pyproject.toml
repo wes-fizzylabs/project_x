@@ -1,0 +1,19 @@
+[project]
+name = "agents-monorepo"
+version = "0.1.0"
+description = "Multi-agent market intelligence pipeline"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "agent-orchestrator",
+    "market-intel",
+    "anthropic>=0.86.0",
+    "pydantic>=2.12.5",
+]
+
+[tool.uv.sources]
+agent-orchestrator = { workspace = true }
+market-intel = { workspace = true }
+
+[tool.uv.workspace]
+members = ["packages/core/src", "packages/agents/*/src", "packages/services/*/src"]
