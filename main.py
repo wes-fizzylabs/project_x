@@ -16,7 +16,7 @@ if _env_path.exists():
 def main():
     result = run_pipeline(
         focus_areas=["insider trading patterns", "squeeze setups"],
-        skip_data_pipeline=False,
+        skip_data_pipeline=True,
     )
 
     if result.ok:

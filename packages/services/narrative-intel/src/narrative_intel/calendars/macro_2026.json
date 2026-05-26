@@ -1,0 +1,230 @@
+{
+  "_note": "FOMC verified via federalreserve.gov. CPI Jan-May verified via BLS archive URLs. NFP Jan-Jun verified via BLS archives + forexdailyinfo. Jul-Dec CPI/NFP from eskisignal/forexdailyinfo — verify against BLS when published.",
+  "_sources": {
+    "fomc": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+    "cpi": "https://www.bls.gov/schedule/news_release/cpi.htm",
+    "nfp": "https://www.bls.gov/schedule/news_release/empsit.htm"
+  },
+  "_updated": "2026-05-22",
+  "events": [
+    {
+      "event": "FOMC Rate Decision",
+      "date": "2026-01-28",
+      "impact": "high",
+      "sectors_affected": ["financials", "housing", "reits"],
+      "notes": "Statement + press conference"
+    },
+    {
+      "event": "FOMC Rate Decision",
+      "date": "2026-03-18",
+      "impact": "high",
+      "sectors_affected": ["financials", "housing", "reits"],
+      "notes": "Statement + SEP (dot plot) + press conference"
+    },
+    {
+      "event": "FOMC Rate Decision",
+      "date": "2026-04-29",
+      "impact": "high",
+      "sectors_affected": ["financials", "housing", "reits"],
+      "notes": "Statement + press conference"
+    },
+    {
+      "event": "FOMC Rate Decision",
+      "date": "2026-06-17",
+      "impact": "high",
+      "sectors_affected": ["financials", "housing", "reits"],
+      "notes": "Statement + SEP (dot plot) + press conference"
+    },
+    {
+      "event": "FOMC Rate Decision",
+      "date": "2026-09-16",
+      "impact": "high",
+      "sectors_affected": ["financials", "housing", "reits"],
+      "notes": "Statement + SEP (dot plot) + press conference"
+    },
+    {
+      "event": "FOMC Rate Decision",
+      "date": "2026-10-28",
+      "impact": "high",
+      "sectors_affected": ["financials", "housing", "reits"],
+      "notes": "Statement + press conference"
+    },
+    {
+      "event": "FOMC Rate Decision",
+      "date": "2026-12-09",
+      "impact": "high",
+      "sectors_affected": ["financials", "housing", "reits"],
+      "notes": "Statement + SEP (dot plot) + press conference"
+    },
+
+    {
+      "event": "CPI Release",
+      "date": "2026-01-13",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "December 2025 CPI — verified via BLS archive"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-02-13",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "January CPI — verified via BLS archive"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-03-11",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "February CPI — verified via BLS archive"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-04-10",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "March CPI — verified via BLS archive"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-05-12",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "April CPI — verified via BLS archive"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-06-10",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "May CPI — confirmed via BLS next-release note"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-07-14",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "June CPI — estimated, verify against BLS"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-08-12",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "July CPI — estimated, verify against BLS"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-09-09",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "August CPI — from eskisignal, verify against BLS"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-10-14",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "September CPI — from eskisignal, verify against BLS"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-11-12",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "October CPI — from eskisignal, verify against BLS"
+    },
+    {
+      "event": "CPI Release",
+      "date": "2026-12-10",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "November CPI — from eskisignal, verify against BLS"
+    },
+
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-01-09",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "December 2025 jobs"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-02-06",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "January jobs"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-03-06",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "February jobs"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-04-03",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "March jobs — verified via BLS archive"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-05-08",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "April jobs — verified via BLS archive"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-06-05",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "May jobs — confirmed via BLS next-release note"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-07-02",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "June jobs — Thursday release (July 4 weekend)"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-08-07",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "July jobs"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-09-04",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "August jobs"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-10-02",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "September jobs"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-11-06",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "October jobs"
+    },
+    {
+      "event": "Nonfarm Payrolls",
+      "date": "2026-12-04",
+      "impact": "high",
+      "sectors_affected": ["broad_market", "financials", "consumer"],
+      "notes": "November jobs"
+    }
+  ]
+}

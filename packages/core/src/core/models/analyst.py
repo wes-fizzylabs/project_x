@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pydantic import BaseModel, Field
 
+from core.models.researcher import ResearcherOutput
+
 
 class UniverseRecord(BaseModel, extra="allow"):
     """A single record from the market-intel pipeline universe.json.
@@ -36,6 +38,10 @@ class AnalystInput(BaseModel):
     focus_areas: list[str] = Field(
         default_factory=list,
         description="Optional areas to emphasize (e.g., 'insider clusters', 'squeeze setups')",
+    )
+    research: ResearcherOutput | None = Field(
+        default=None,
+        description="Research enrichment from the researcher agent (news, peers, catalysts)",
     )
 
 

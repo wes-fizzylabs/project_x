@@ -1,0 +1,16 @@
+[project]
+name = "narrative-intel"
+version = "0.1.0"
+description = "Narrative intelligence pipeline — Reddit sentiment, political trades, SEC 8-K, news discovery"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28",
+    "pydantic>=2.13",
+]
+
+[project.scripts]
+narrative-intel-pipeline = "narrative_intel.pipeline.run:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

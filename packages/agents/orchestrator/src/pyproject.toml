@@ -4,6 +4,7 @@ version = "0.1.0"
 dependencies = [
     "core",
     "agent-analyst",
+    "agent-researcher",
     "market-intel",
     "pydantic>=2.12.5",
 ]
@@ -11,6 +12,7 @@ dependencies = [
 [tool.uv.sources]
 core = { workspace = true }
 agent-analyst = { workspace = true }
+agent-researcher = { workspace = true }
 market-intel = { workspace = true }
 
 [build-system]

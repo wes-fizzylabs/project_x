@@ -3,12 +3,14 @@ name = "agent-researcher"
 version = "0.1.0"
 dependencies = [
     "core",              # resolved via workspace
+    "market-intel",      # resolved via workspace — for peer enrichment
     "anthropic>=0.86.0",
     "pydantic>=2.12.5",
 ]
 
 [tool.uv.sources]
 core = { workspace = true }
+market-intel = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]

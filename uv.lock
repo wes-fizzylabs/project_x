@@ -18,6 +18,7 @@ members = [
     "agents-monorepo",
     "core",
     "market-intel",
+    "narrative-intel",
 ]
 
 [[package]]
@@ -43,6 +44,7 @@ version = "0.1.0"
 source = { editable = "packages/agents/orchestrator/src" }
 dependencies = [
     { name = "agent-analyst" },
+    { name = "agent-researcher" },
     { name = "core" },
     { name = "market-intel" },
     { name = "pydantic" },
@@ -51,6 +53,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "agent-analyst", editable = "packages/agents/analyst/src" },
+    { name = "agent-researcher", editable = "packages/agents/researcher/src" },
     { name = "core", editable = "packages/core/src" },
     { name = "market-intel", editable = "packages/services/market-intel/src" },
     { name = "pydantic", specifier = ">=2.12.5" },
@@ -63,6 +66,7 @@ source = { editable = "packages/agents/researcher/src" }
 dependencies = [
     { name = "anthropic" },
     { name = "core" },
+    { name = "market-intel" },
     { name = "pydantic" },
 ]
 
@@ -70,6 +74,7 @@ dependencies = [
 requires-dist = [
     { name = "anthropic", specifier = ">=0.86.0" },
     { name = "core", editable = "packages/core/src" },
+    { name = "market-intel", editable = "packages/services/market-intel/src" },
     { name = "pydantic", specifier = ">=2.12.5" },
 ]
 
@@ -81,6 +86,7 @@ dependencies = [
     { name = "agent-orchestrator" },
     { name = "anthropic" },
     { name = "market-intel" },
+    { name = "narrative-intel" },
     { name = "pydantic" },
 ]
 
@@ -89,6 +95,7 @@ requires-dist = [
     { name = "agent-orchestrator", editable = "packages/agents/orchestrator/src" },
     { name = "anthropic", specifier = ">=0.86.0" },
     { name = "market-intel", editable = "packages/services/market-intel/src" },
+    { name = "narrative-intel", editable = "packages/services/narrative-intel/src" },
     { name = "pydantic", specifier = ">=2.12.5" },
 ]
 
@@ -948,6 +955,21 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/be/c3/ac2cc9307fb15cc28ed6d4a9266b216c83ee7fe64299f0264047982bce88/multitasking-0.0.13.tar.gz", hash = "sha256:d896b5df877c9ca5eeddbf0e5994124694d6cb535aba698fb23344c7025155a1", size = 20585, upload-time = "2026-04-23T12:14:15.049Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d3/1c/24dbf69b247f287401c904a396233a43c89fd4fb9b7cd2e50e430e9cd57c/multitasking-0.0.13-py3-none-any.whl", hash = "sha256:ec9243af140c67bfe52dc98d7173c294512735a88e8425c458b250db99dc2b48", size = 16380, upload-time = "2026-04-23T12:14:13.776Z" },
+]
+
+[[package]]
+name = "narrative-intel"
+version = "0.1.0"
+source = { editable = "packages/services/narrative-intel/src" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "httpx", specifier = ">=0.28" },
+    { name = "pydantic", specifier = ">=2.13" },
 ]
 
 [[package]]
