@@ -17,7 +17,7 @@ from selectolax.parser import HTMLParser
 
 URL = (
     "http://openinsider.com/screener"
-    "?s=&o=&pl=1&ph=250&ll=&lh=&fd=3&fdr=&td=0&tdr="
+    "?s=&o=&pl=1&ph=250&ll=&lh=&fd=7&fdr=&td=0&tdr="
     "&fdlyl=&fdlyh=&daysago=&xp=1&vl=1000&vh="
     "&ocl=&och=&sic1=-1&sicl=100&sich=9999&grp=0"
     "&nfl=&nfh=&nil=&nih=&nol=&noh=&v2l=&v2h=&oc2l=&oc2h="
@@ -44,7 +44,8 @@ def parse(html: str) -> list[dict]:
     tree = HTMLParser(html)
     table = tree.css_first("table.tinytable")
     if table is None:
-        raise RuntimeError("no table.tinytable found — page shape changed?")
+        # No results for the current filters (quiet filing period) — return empty
+        return []
 
     rows: list[dict] = []
     for tr in table.css("tbody tr"):

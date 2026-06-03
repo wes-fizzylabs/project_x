@@ -51,7 +51,7 @@ class ResearcherInput(BaseModel):
         description="Minimum composite score to research (tickers below are skipped)",
     )
     max_tickers: int = Field(
-        default=10,
+        default=5,
         description="Max tickers to research (top N by composite score after threshold filter)",
     )
     max_peers: int = Field(default=5, description="Max peer companies per ticker")

@@ -95,7 +95,7 @@ def _build_user_message(input: AnalystInput) -> str:
 
 def run(input: AnalystInput) -> AnalystOutput:
     """Run the analyst agent."""
-    client = anthropic.Anthropic()
+    client = anthropic.Anthropic(max_retries=5)
 
     user_message = _build_user_message(input)
 

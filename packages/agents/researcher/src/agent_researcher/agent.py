@@ -20,6 +20,14 @@ from market_intel.pipeline.sentiment import fetch_sentiment
 
 _OUTPUT_DIR = Path(__file__).parent.parent / "output"
 
+# Only send fields the researcher needs — full records have options chains,
+# score breakdowns, urgency signals, etc. that bloat past the 30K token rate limit.
+_RESEARCHER_FIELDS = {
+    "ticker", "company", "sector", "industry", "composite_score",
+    "composite_label", "price_usd", "sources", "insider", "action",
+    "role", "value_usd", "trade_date", "filing_lag_days",
+}
+
 
 def _build_user_message(input: ResearcherInput) -> tuple[str, list[dict], list[str]]:
     """Build the user message with universe records for the researcher."""
@@ -44,8 +52,9 @@ def _build_user_message(input: ResearcherInput) -> tuple[str, list[dict], list[s
     for rec in researched:
         ticker = rec.get("ticker", "???")
         score = rec.get("composite_score", 0)
+        slim = {k: v for k, v in rec.items() if k in _RESEARCHER_FIELDS}
         parts.append(f'  <record ticker="{ticker}" composite_score="{score}">')
-        parts.append(f"    {json.dumps(rec)}")
+        parts.append(f"    {json.dumps(slim)}")
         parts.append("  </record>")
     parts.append("</universe_data>")
 
@@ -87,19 +96,23 @@ def _enrich_peer(ticker: str) -> PeerSnapshot | None:
 
 def _extract_research_json(text: str) -> list[dict]:
     """Extract the JSON array from <research_output> tags or raw JSON."""
-    # Try tagged output first (greedy match for nested structures)
-    match = re.search(r"<research_output>\s*(\[.*\])\s*</research_output>", text, re.DOTALL)
+    # Try tagged output first — handle optional markdown code fences (```json ... ```)
+    match = re.search(
+        r"<research_output>\s*(?:```json\s*)?(\[.*\])\s*(?:```)?\s*</research_output>",
+        text, re.DOTALL,
+    )
     if match:
         try:
             return json.loads(match.group(1))
         except json.JSONDecodeError:
             pass
 
-    # Fallback: find a JSON array by bracket matching
-    # Look for the first '[' and try parsing from there
+    # Fallback: bracket matching — find the LARGEST valid JSON array (not a nested one).
+    # This handles truncated output where the outer array never closes: we parse
+    # each complete [...] and return whichever contains TickerResearch-shaped dicts.
     start = text.find("[")
+    best: list[dict] = []
     while start != -1:
-        # Try to parse from this position
         depth = 0
         for i in range(start, len(text)):
             if text[i] == "[":
@@ -111,13 +124,18 @@ def _extract_research_json(text: str) -> list[dict]:
                     try:
                         parsed = json.loads(candidate)
                         if isinstance(parsed, list) and parsed and isinstance(parsed[0], dict):
-                            return parsed
+                            # Prefer arrays of TickerResearch (have "ticker" + "news" keys)
+                            if "ticker" in parsed[0] and "news" in parsed[0]:
+                                return parsed
+                            # Track largest non-research array as fallback
+                            if len(parsed) > len(best):
+                                best = parsed
                     except json.JSONDecodeError:
                         pass
                     break
         start = text.find("[", start + 1)
 
-    return []
+    return best
 
 
 def _parse_research_output(raw_items: list[dict], peer_data: dict[str, PeerSnapshot]) -> list[TickerResearch]:
@@ -179,7 +197,7 @@ def _parse_research_output(raw_items: list[dict], peer_data: dict[str, PeerSnaps
 
 def run(input: ResearcherInput) -> ResearcherOutput:
     """Run the researcher agent: web search for news + peer enrichment."""
-    client = anthropic.Anthropic()
+    client = anthropic.Anthropic(max_retries=5)
 
     user_message, researched_records, skipped = _build_user_message(input)
 
@@ -195,14 +213,16 @@ def run(input: ResearcherInput) -> ResearcherOutput:
     system_prompt = RESEARCHER_SYSTEM_PROMPT.replace("{max_peers}", str(input.max_peers))
 
     # Step 1: LLM with web search — news discovery + peer identification
+    # Use streaming to avoid 10-minute timeout on long web-search requests
     print(f"[researcher] Researching {len(researched_records)} tickers (web search + peer discovery)")
-    response = client.messages.create(
+    with client.messages.stream(
         model="claude-sonnet-4-6",
-        max_tokens=16000,
+        max_tokens=32000,
         system=system_prompt,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{"role": "user", "content": user_message}],
-    )
+    ) as stream:
+        response = stream.get_final_message()
 
     web_searches = sum(
         1 for block in response.content
