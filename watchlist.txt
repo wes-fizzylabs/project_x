@@ -1,11 +1,2 @@
 # --- agent automation: insider discoveries ---
-AVLN
-BDC
-CECO
-AAT
-BLND
-CSAN
-FBIN
-GOLD
-LOGC
-WGS
+CLFD
